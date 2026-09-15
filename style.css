@@ -1,0 +1,348 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap");
+
+:root {
+  --ink: #111111;
+  --bg: #f2efe4;
+  --panel: #ffffff;
+  --yellow: #ffd400;
+  --blue: #2b6cff;
+  --pink: #ff3d6e;
+  --green: #17b26a;
+  --border-w: 3px;
+  --shadow: 6px 6px 0 var(--ink);
+  --shadow-sm: 4px 4px 0 var(--ink);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  background-image: radial-gradient(var(--ink) 1px, transparent 1px);
+  background-size: 22px 22px;
+  background-position: -10px -10px;
+}
+
+.h2v-app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 20px;
+}
+
+.h2v-header {
+  background: var(--yellow);
+  border: var(--border-w) solid var(--ink);
+  box-shadow: var(--shadow);
+  padding: 16px 20px;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.h2v-header h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.h2v-header span {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.h2v-main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 1.1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.h2v-pane {
+  background: var(--panel);
+  border: var(--border-w) solid var(--ink);
+  box-shadow: var(--shadow);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.h2v-pane h2 {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin: 0 0 12px;
+  padding-bottom: 8px;
+  border-bottom: var(--border-w) solid var(--ink);
+}
+
+.h2v-pane h2 em {
+  font-style: normal;
+  font-weight: 500;
+  text-transform: none;
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+/* --- code pane --- */
+textarea#h2v-code {
+  flex: 1;
+  min-height: 300px;
+  background: #fbfaf5;
+  border: var(--border-w) solid var(--ink);
+  color: var(--ink);
+  padding: 12px;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 12.5px;
+  line-height: 1.55;
+  resize: vertical;
+  outline: none;
+}
+
+textarea#h2v-code:focus {
+  box-shadow: var(--shadow-sm);
+}
+
+.h2v-zip-row {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.h2v-zip-name {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--ink);
+  background: #fff3b0;
+  border: 2px solid var(--ink);
+  padding: 3px 8px;
+}
+
+.h2v-hint {
+  font-size: 11.5px;
+  line-height: 1.5;
+  margin: 10px 0 0;
+  opacity: 0.75;
+}
+
+/* --- buttons --- */
+button.h2v-btn {
+  border: var(--border-w) solid var(--ink);
+  background: var(--panel);
+  color: var(--ink);
+  padding: 10px 18px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.05s ease, box-shadow 0.05s ease;
+}
+
+button.h2v-btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 var(--ink);
+}
+
+button.h2v-btn.primary {
+  background: var(--blue);
+  color: #fff;
+}
+
+button.h2v-btn.primary:disabled {
+  background: #cfd3dd;
+  color: #6b6f7a;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+button.h2v-btn.ghost {
+  background: var(--yellow);
+}
+
+/* --- preview pane --- */
+.h2v-frame-outer {
+  flex: 1;
+  min-height: 320px;
+  background: repeating-conic-gradient(#e7e4d8 0% 25%, #f2efe4 0% 50%) 0 0 / 24px 24px;
+  border: var(--border-w) solid var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.h2v-frame-box {
+  overflow: hidden;
+  border: 2px solid var(--ink);
+  background: #fff;
+}
+
+iframe#h2v-iframe {
+  border: none;
+  display: block;
+  transform-origin: top left;
+}
+
+/* --- record pane --- */
+.h2v-size-row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.h2v-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  flex: 1;
+  min-width: 180px;
+}
+
+.h2v-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.h2v-field label {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.h2v-field input {
+  width: 78px;
+  background: #fbfaf5;
+  border: 2px solid var(--ink);
+  color: var(--ink);
+  padding: 7px 8px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+}
+
+.h2v-field input:focus {
+  outline: none;
+  box-shadow: var(--shadow-sm);
+}
+
+.h2v-mini-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.h2v-mini-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+#h2v-mini-canvas {
+  border: 2px solid var(--ink);
+  background: #fff;
+  width: 140px;
+  height: 88px;
+}
+
+.h2v-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.h2v-status {
+  margin-top: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.h2v-status .dot {
+  width: 9px;
+  height: 9px;
+  border: 2px solid var(--ink);
+  background: var(--panel);
+}
+
+.h2v-status.recording .dot {
+  background: var(--pink);
+  animation: h2v-pulse 1s steps(2, jump-none) infinite;
+}
+
+.h2v-status.done .dot {
+  background: var(--green);
+}
+
+@keyframes h2v-pulse {
+  50% {
+    opacity: 0.25;
+  }
+}
+
+.h2v-progress-track {
+  margin-top: 10px;
+  height: 10px;
+  border: 2px solid var(--ink);
+  background: #fff;
+  overflow: hidden;
+}
+
+.h2v-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--blue);
+  transition: width 0.1s linear;
+}
+
+.h2v-video-box {
+  margin-top: 16px;
+}
+
+.h2v-video-box video {
+  width: 100%;
+  border: var(--border-w) solid var(--ink);
+  background: #000;
+}
+
+.h2v-download {
+  margin-top: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+  background: var(--yellow);
+  border: 2px solid var(--ink);
+  padding: 6px 12px;
+  font-size: 12.5px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.h2v-download:hover {
+  background: var(--blue);
+  color: #fff;
+}
+
+@media (max-width: 1100px) {
+  .h2v-main {
+    grid-template-columns: 1fr;
+  }
+}
