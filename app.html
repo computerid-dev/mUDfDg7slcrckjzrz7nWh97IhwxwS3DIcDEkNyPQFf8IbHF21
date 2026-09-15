@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>html2video</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="h2v-app">
+    <header class="h2v-header">
+      <h1>html2video</h1>
+      <span>kode &rarr; video, jalan di browser.</span>
+    </header>
+
+    <main class="h2v-main">
+      <section class="h2v-pane h2v-pane--code">
+        <h2>Kode <em>(HTML + CSS + JS)</em></h2>
+        <textarea id="h2v-code" spellcheck="false"></textarea>
+
+        <div class="h2v-zip-row">
+          <button class="h2v-btn ghost" id="h2v-zip-btn" type="button">Extrak ZIP</button>
+          <input type="file" id="h2v-zip-input" accept=".zip" hidden />
+          <span class="h2v-zip-name" id="h2v-zip-name"></span>
+        </div>
+
+        <p class="h2v-hint">
+          ZIP diekstrak langsung di browser buat pratinjau saja (bukan deploy) &mdash;
+          index.html di dalamnya dicari otomatis, dan file CSS/JS/gambar yang
+          direferensikan pakai path relatif ikut dipasang.
+        </p>
+      </section>
+
+      <section class="h2v-pane h2v-pane--preview">
+        <h2>Pratinjau langsung</h2>
+        <div class="h2v-frame-outer" id="h2v-frame-outer">
+          <div class="h2v-frame-box" id="h2v-frame-box">
+            <iframe id="h2v-iframe" title="Pratinjau kode"></iframe>
+          </div>
+        </div>
+      </section>
+
+      <section class="h2v-pane h2v-pane--record">
+        <h2>Ukuran &amp; rekam</h2>
+
+        <div class="h2v-size-row">
+          <div class="h2v-controls">
+            <div class="h2v-field">
+              <label for="h2v-width">Lebar (px)</label>
+              <input id="h2v-width" type="number" value="800" min="64" max="3840" />
+            </div>
+            <div class="h2v-field">
+              <label for="h2v-height">Tinggi (px)</label>
+              <input id="h2v-height" type="number" value="600" min="64" max="2160" />
+            </div>
+            <div class="h2v-field">
+              <label for="h2v-duration">Durasi (detik)</label>
+              <input id="h2v-duration" type="number" value="5" min="1" max="60" />
+            </div>
+            <div class="h2v-field">
+              <label for="h2v-fps">FPS</label>
+              <input id="h2v-fps" type="number" value="15" min="5" max="30" />
+            </div>
+          </div>
+
+          <div class="h2v-mini-wrap">
+            <span class="h2v-mini-label">preview ukuran</span>
+            <canvas id="h2v-mini-canvas" width="320" height="200"></canvas>
+          </div>
+        </div>
+
+        <div class="h2v-actions">
+          <button class="h2v-btn primary" id="h2v-generate" type="button">Generate video</button>
+          <button class="h2v-btn ghost" id="h2v-reset" type="button">Reset</button>
+        </div>
+
+        <div class="h2v-status" id="h2v-status">
+          <span class="dot"></span>
+          <span id="h2v-status-text">Siap membuat video.</span>
+        </div>
+        <div class="h2v-progress-track">
+          <div class="h2v-progress-fill" id="h2v-progress-fill"></div>
+        </div>
+
+        <div class="h2v-video-box" id="h2v-video-box">
+          <video id="h2v-video" controls loop muted></video>
+          <br />
+          <a class="h2v-download" id="h2v-download">Download video (.webm)</a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
